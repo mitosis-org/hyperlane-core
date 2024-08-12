@@ -1,5 +1,5 @@
 {
-  "name": "@hyperlane-xyz/core",
+  "name": "hpl-v5",
   "description": "Core solidity contracts for Hyperlane",
   "version": "5.0.0",
   "dependencies": {
