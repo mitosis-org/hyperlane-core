@@ -3,42 +3,17 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 
-import "@oz-hpl/contracts/utils/Strings.sol";
-
 import {IAggregationIsm} from "../../contracts/interfaces/isms/IAggregationIsm.sol";
 import {StaticAggregationIsmFactory} from "../../contracts/isms/aggregation/StaticAggregationIsmFactory.sol";
 import {AggregationIsmMetadata} from "../../contracts/isms/libs/AggregationIsmMetadata.sol";
 import {TestIsm, ThresholdTestUtils} from "./IsmTestUtils.sol";
 
 contract AggregationIsmTest is Test {
-    using Strings for uint256;
-    using Strings for uint8;
-
-    string constant fixtureKey = "fixture";
-
     StaticAggregationIsmFactory factory;
     IAggregationIsm ism;
 
     function setUp() public {
         factory = new StaticAggregationIsmFactory();
-    }
-
-    function fixtureAppendMetadata(
-        uint256 index,
-        bytes memory metadata
-    ) internal {
-        vm.serializeBytes(fixtureKey, index.toString(), metadata);
-    }
-
-    function fixtureAppendNull(uint256 index) internal {
-        vm.serializeString(fixtureKey, index.toString(), "null");
-    }
-
-    function writeFixture(bytes memory metadata, uint8 m) internal {
-        string memory path = string(
-            abi.encodePacked("./fixtures/aggregation/", m.toString(), ".json")
-        );
-        vm.writeJson(vm.serializeBytes(fixtureKey, "encoded", metadata), path);
     }
 
     function deployIsms(
@@ -57,37 +32,34 @@ contract AggregationIsmTest is Test {
         return isms;
     }
 
-    function getMetadata(uint8 m, bytes32 seed) private returns (bytes memory) {
+    function getMetadata(
+        uint8 m,
+        bytes32 seed
+    ) private view returns (bytes memory) {
         (address[] memory choices, ) = ism.modulesAndThreshold("");
         address[] memory chosen = ThresholdTestUtils.choose(m, choices, seed);
         bytes memory offsets;
         uint32 start = 8 * uint32(choices.length);
         bytes memory metametadata;
-
         for (uint256 i = 0; i < choices.length; i++) {
             bool included = false;
             for (uint256 j = 0; j < chosen.length; j++) {
                 included = included || choices[i] == chosen[j];
             }
             if (included) {
-                bytes memory metadata = TestIsm(choices[i]).requiredMetadata();
-                uint32 end = start + uint32(metadata.length);
+                bytes memory requiredMetadata = TestIsm(choices[i])
+                    .requiredMetadata();
+                uint32 end = start + uint32(requiredMetadata.length);
                 uint64 offset = (uint64(start) << 32) | uint64(end);
                 offsets = bytes.concat(offsets, abi.encodePacked(offset));
                 start = end;
-                metametadata = abi.encodePacked(metametadata, metadata);
-                fixtureAppendMetadata(i, metadata);
+                metametadata = abi.encodePacked(metametadata, requiredMetadata);
             } else {
-                offsets = bytes.concat(offsets, abi.encodePacked(uint64(0)));
-                fixtureAppendNull(i);
+                uint64 offset = 0;
+                offsets = bytes.concat(offsets, abi.encodePacked(offset));
             }
         }
-
-        bytes memory encoded = abi.encodePacked(offsets, metametadata);
-
-        writeFixture(encoded, m);
-
-        return encoded;
+        return abi.encodePacked(offsets, metametadata);
     }
 
     function testVerify(uint8 m, uint8 n, bytes32 seed) public {

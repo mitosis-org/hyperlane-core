@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { utils } from 'ethers';
+import { ethers } from 'hardhat';
 
 import {
   addressToBytes32,
@@ -7,10 +7,8 @@ import {
   messageId,
 } from '@hyperlane-xyz/utils';
 
-import testCases from '../../vectors/message.json' assert { type: 'json' };
+import testCases from '../../vectors/message.json';
 import { Mailbox__factory, TestMessage, TestMessage__factory } from '../types';
-
-import { getSigner, getSigners } from './signer';
 
 const remoteDomain = 1000;
 const localDomain = 2000;
@@ -21,7 +19,7 @@ describe('Message', async () => {
   let version: number;
 
   before(async () => {
-    const signer = await getSigner();
+    const [signer] = await ethers.getSigners();
 
     const Message = new TestMessage__factory(signer);
     messageLib = await Message.deploy();
@@ -33,8 +31,8 @@ describe('Message', async () => {
   });
 
   it('Returns fields from a message', async () => {
-    const [sender, recipient] = await getSigners();
-    const body = utils.formatBytes32String('message');
+    const [sender, recipient] = await ethers.getSigners();
+    const body = ethers.utils.formatBytes32String('message');
 
     const message = formatMessage(
       version,
@@ -66,7 +64,7 @@ describe('Message', async () => {
     for (const test of testCases) {
       const { origin, sender, destination, recipient, body, nonce, id } = test;
 
-      const hexBody = utils.hexlify(body);
+      const hexBody = ethers.utils.hexlify(body);
 
       const hyperlaneMessage = formatMessage(
         version,

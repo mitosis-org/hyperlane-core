@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT OR Apache-2.0
 pragma solidity >=0.8.0;
 // ============ Internal Imports ============
-
-import {IInterchainSecurityModule} from "../../interfaces/IInterchainSecurityModule.sol";
 import {AbstractMultisigIsm} from "./AbstractMultisigIsm.sol";
 import {AbstractMerkleRootMultisigIsm} from "./AbstractMerkleRootMultisigIsm.sol";
 import {AbstractMessageIdMultisigIsm} from "./AbstractMessageIdMultisigIsm.sol";
@@ -36,10 +34,7 @@ abstract contract AbstractMetaProxyMultisigIsm is AbstractMultisigIsm {
 contract StaticMerkleRootMultisigIsm is
     AbstractMerkleRootMultisigIsm,
     AbstractMetaProxyMultisigIsm
-{
-    uint8 public constant moduleType =
-        uint8(IInterchainSecurityModule.Types.MERKLE_ROOT_MULTISIG);
-}
+{}
 
 /**
  * @title StaticMessageIdMultisigIsm
@@ -49,10 +44,7 @@ contract StaticMerkleRootMultisigIsm is
 contract StaticMessageIdMultisigIsm is
     AbstractMessageIdMultisigIsm,
     AbstractMetaProxyMultisigIsm
-{
-    uint8 public constant moduleType =
-        uint8(IInterchainSecurityModule.Types.MESSAGE_ID_MULTISIG);
-}
+{}
 
 // solhint-enable no-empty-blocks
 

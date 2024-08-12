@@ -27,7 +27,7 @@ import {Initializable} from "@oz-hpl/contracts-upgradeable/proxy/utils/Initializ
 
 /**
  * @title AbstractMessageIdAuthorizedIsm
- * @notice Uses external verification options to verify interchain messages which need a authorized caller
+ * @notice Uses external verfication options to verify interchain messages which need a authorized caller
  */
 abstract contract AbstractMessageIdAuthorizedIsm is
     IInterchainSecurityModule,
@@ -72,41 +72,26 @@ abstract contract AbstractMessageIdAuthorizedIsm is
      */
     function verify(
         bytes calldata,
-        /*metadata*/
+        /*_metadata*/
         bytes calldata message
-    ) external virtual returns (bool) {
-        bool verified = isVerified(message);
-        if (verified) {
-            releaseValueToRecipient(message);
-        }
-        return verified;
-    }
-
-    // ============ Public Functions ============
-
-    /**
-     * @notice Release the value to the recipient if the message is verified.
-     * @param message Message to release value for.
-     */
-    function releaseValueToRecipient(bytes calldata message) public {
+    ) external returns (bool) {
         bytes32 messageId = message.id();
-        uint256 _msgValue = verifiedMessages[messageId].clearBit(
+
+        // check for the first bit (used for verification)
+        bool verified = verifiedMessages[messageId].isBitSet(
             VERIFIED_MASK_INDEX
         );
-        if (_msgValue > 0) {
-            verifiedMessages[messageId] -= _msgValue;
-            payable(message.recipientAddress()).sendValue(_msgValue);
+        // rest 255 bits contains the msg.value passed from the hook
+        if (verified) {
+            uint256 _msgValue = verifiedMessages[messageId].clearBit(
+                VERIFIED_MASK_INDEX
+            );
+            if (_msgValue > 0) {
+                verifiedMessages[messageId] -= _msgValue;
+                payable(message.recipientAddress()).sendValue(_msgValue);
+            }
         }
-    }
-
-    /**
-     * @notice Check if a message is verified through verifyMessageId first.
-     * @param message Message to check.
-     */
-    function isVerified(bytes calldata message) public view returns (bool) {
-        bytes32 messageId = message.id();
-        // check for the first bit (used for verification)
-        return verifiedMessages[messageId].isBitSet(VERIFIED_MASK_INDEX);
+        return verified;
     }
 
     /**
@@ -114,7 +99,7 @@ abstract contract AbstractMessageIdAuthorizedIsm is
      * @dev Only callable by the authorized hook.
      * @param messageId Hyperlane Id of the message.
      */
-    function verifyMessageId(bytes32 messageId) public payable virtual {
+    function verifyMessageId(bytes32 messageId) external payable virtual {
         require(
             _isAuthorized(),
             "AbstractMessageIdAuthorizedIsm: sender is not the hook"
@@ -128,10 +113,5 @@ abstract contract AbstractMessageIdAuthorizedIsm is
         emit ReceivedMessage(messageId);
     }
 
-    // ============ Internal Functions ============
-
-    /**
-     * @notice Check if sender is authorized to message `verifyMessageId`.
-     */
     function _isAuthorized() internal view virtual returns (bool);
 }

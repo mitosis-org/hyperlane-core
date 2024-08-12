@@ -60,7 +60,7 @@ contract PortalAdapterTest is Test {
     function testAdapter(uint256 amount) public {
         // Transfers of 0 are invalid
         vm.assume(amount > 0);
-        // Calls MockPortalBridge with the right parameters
+        // Calls MockPortalBridge with the right paramters
         vm.expectCall(
             address(portalBridge),
             abi.encodeCall(

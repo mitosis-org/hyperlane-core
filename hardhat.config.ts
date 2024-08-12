@@ -2,7 +2,6 @@ import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
 import '@typechain/hardhat';
 import 'hardhat-gas-reporter';
-import 'hardhat-ignore-warnings';
 import 'solidity-coverage';
 
 /**
@@ -25,16 +24,8 @@ module.exports = {
     outDir: './types',
     target: 'ethers-v5',
     alwaysGenerateOverloads: true,
-    node16Modules: true,
   },
   mocha: {
     bail: true,
-    import: 'tsx',
-  },
-  warnings: {
-    // turn off all warnings for libs:
-    'fx-portal/**/*': {
-      default: 'off',
-    },
   },
 };

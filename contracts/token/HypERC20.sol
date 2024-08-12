@@ -26,15 +26,11 @@ contract HypERC20 is ERC20Upgradeable, TokenRouter {
     function initialize(
         uint256 _totalSupply,
         string memory _name,
-        string memory _symbol,
-        address _hook,
-        address _interchainSecurityModule,
-        address _owner
+        string memory _symbol
     ) external initializer {
         // Initialize ERC20 metadata
         __ERC20_init(_name, _symbol);
         _mint(msg.sender, _totalSupply);
-        _MailboxClient_initialize(_hook, _interchainSecurityModule, _owner);
     }
 
     function decimals() public view override returns (uint8) {

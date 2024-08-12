@@ -2,11 +2,9 @@
 pragma solidity >=0.8.0;
 
 import "forge-std/Test.sol";
-import {TransparentUpgradeableProxy} from "@oz-hpl/contracts/proxy/transparent/TransparentUpgradeableProxy.sol";
 
 import {HypNativeScaled} from "../../contracts/token/extensions/HypNativeScaled.sol";
 import {HypERC20} from "../../contracts/token/HypERC20.sol";
-import {HypNative} from "../../contracts/token/HypNative.sol";
 import {TypeCasts} from "../../contracts/libs/TypeCasts.sol";
 import {MockHyperlaneEnvironment} from "../../contracts/mock/MockHyperlaneEnvironment.sol";
 
@@ -39,41 +37,20 @@ contract HypNativeScaledTest is Test {
     function setUp() public {
         environment = new MockHyperlaneEnvironment(synthDomain, nativeDomain);
 
-        HypERC20 implementationSynth = new HypERC20(
+        synth = new HypERC20(
             decimals,
             address(environment.mailboxes(synthDomain))
         );
-        TransparentUpgradeableProxy proxySynth = new TransparentUpgradeableProxy(
-                address(implementationSynth),
-                address(9),
-                abi.encodeWithSelector(
-                    HypERC20.initialize.selector,
-                    mintAmount * (10 ** decimals),
-                    "Zebec BSC Token",
-                    "ZBC",
-                    address(0),
-                    address(0),
-                    address(this)
-                )
-            );
-        synth = HypERC20(address(proxySynth));
+        synth.initialize(
+            mintAmount * (10 ** decimals),
+            "Zebec BSC Token",
+            "ZBC"
+        );
 
-        HypNativeScaled implementationNative = new HypNativeScaled(
+        native = new HypNativeScaled(
             scale,
             address(environment.mailboxes(nativeDomain))
         );
-        TransparentUpgradeableProxy proxyNative = new TransparentUpgradeableProxy(
-                address(implementationNative),
-                address(9),
-                abi.encodeWithSelector(
-                    HypNative.initialize.selector,
-                    address(0),
-                    address(0),
-                    address(this)
-                )
-            );
-
-        native = HypNativeScaled(payable(address(proxyNative)));
 
         native.enrollRemoteRouter(
             synthDomain,

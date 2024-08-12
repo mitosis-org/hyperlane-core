@@ -5,7 +5,7 @@ import {Create2} from "../../lib/Create2.sol";
 import {SafeMath} from "../../lib/SafeMath.sol";
 import {FxERC20} from "../../tokens/FxERC20.sol";
 import {FxBaseRootTunnel} from "../../tunnel/FxBaseRootTunnel.sol";
-import {SafeERC20, IERC20} from "@oz-hpl/contracts/token/ERC20/utils/SafeERC20.sol";
+import {SafeERC20, IERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
 /**
  * @title FxMintableERC20RootTunnel

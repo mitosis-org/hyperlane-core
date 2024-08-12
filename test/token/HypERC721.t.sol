@@ -14,9 +14,6 @@ pragma solidity ^0.8.13;
 @@@@@@@@@       @@@@@@@@*/
 
 import "forge-std/Test.sol";
-import {TransparentUpgradeableProxy} from "@oz-hpl/contracts/proxy/transparent/TransparentUpgradeableProxy.sol";
-import {IERC721Receiver} from "@oz-hpl/contracts/token/ERC721/IERC721Receiver.sol";
-import {ERC721URIStorageUpgradeable} from "@oz-hpl/contracts-upgradeable/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol";
 
 import {TestMailbox} from "../../contracts/test/TestMailbox.sol";
 import {TestPostDispatchHook} from "../../contracts/test/TestPostDispatchHook.sol";
@@ -29,6 +26,9 @@ import {HypERC721Collateral} from "../../contracts/token/HypERC721Collateral.sol
 import {HypERC721URIStorage} from "../../contracts/token/extensions/HypERC721URIStorage.sol";
 import {HypERC721URICollateral} from "../../contracts/token/extensions/HypERC721URICollateral.sol";
 
+import {IERC721Receiver} from "@oz-hpl/contracts/token/ERC721/IERC721Receiver.sol";
+import {ERC721URIStorageUpgradeable} from "@oz-hpl/contracts-upgradeable/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol";
+
 abstract contract HypTokenTest is Test, IERC721Receiver {
     using TypeCasts for address;
 
@@ -38,7 +38,6 @@ abstract contract HypTokenTest is Test, IERC721Receiver {
 
     address internal constant ALICE = address(0x1);
     address internal constant BOB = address(0x2);
-    address internal constant PROXY_ADMIN = address(0x37);
     uint32 internal constant ORIGIN = 11;
     uint32 internal constant DESTINATION = 22;
     uint256 internal constant TRANSFER_ID = 0;
@@ -78,42 +77,19 @@ abstract contract HypTokenTest is Test, IERC721Receiver {
 
     function _deployRemoteToken(bool isCollateral) internal {
         if (isCollateral) {
-            HypERC721Collateral implementation = new HypERC721Collateral(
+            remoteToken = new HypERC721Collateral(
                 address(remotePrimaryToken),
                 address(remoteMailbox)
             );
-            TransparentUpgradeableProxy proxy = new TransparentUpgradeableProxy(
-                address(implementation),
-                PROXY_ADMIN,
-                abi.encodeWithSelector(
-                    HypERC721Collateral.initialize.selector,
-                    address(0),
-                    address(0),
-                    address(this)
-                )
-            );
-            remoteToken = HypERC721Collateral(address(proxy));
             remotePrimaryToken.transferFrom(
                 address(this),
                 address(remoteToken),
                 0
             ); // need for processing messages
         } else {
-            HypERC721 implementation = new HypERC721(address(remoteMailbox));
-            TransparentUpgradeableProxy proxy = new TransparentUpgradeableProxy(
-                address(implementation),
-                PROXY_ADMIN,
-                abi.encodeWithSelector(
-                    HypERC721.initialize.selector,
-                    0,
-                    NAME,
-                    SYMBOL,
-                    address(0),
-                    address(0),
-                    address(this)
-                )
-            );
-            remoteToken = TokenRouter(address(proxy));
+            HypERC721 erc721 = new HypERC721(address(remoteMailbox));
+            erc721.initialize(0, NAME, SYMBOL);
+            remoteToken = TokenRouter(address(erc721));
         }
         remoteToken.enrollRemoteRouter(
             ORIGIN,
@@ -175,22 +151,10 @@ contract HypERC721Test is HypTokenTest {
     function setUp() public virtual override {
         super.setUp();
 
-        HypERC721 implementation = new HypERC721(address(localMailbox));
-        TransparentUpgradeableProxy proxy = new TransparentUpgradeableProxy(
-            address(implementation),
-            PROXY_ADMIN,
-            abi.encodeWithSelector(
-                HypERC721.initialize.selector,
-                INITIAL_SUPPLY,
-                NAME,
-                SYMBOL,
-                address(0),
-                address(0),
-                address(this)
-            )
-        );
-        localToken = HypERC721(address(proxy));
-        hyp721 = HypERC721(address(proxy));
+        localToken = new HypERC721(address(localMailbox));
+        hyp721 = HypERC721(address(localToken));
+
+        hyp721.initialize(INITIAL_SUPPLY, NAME, SYMBOL);
 
         hyp721.enrollRemoteRouter(
             DESTINATION,
@@ -200,14 +164,7 @@ contract HypERC721Test is HypTokenTest {
 
     function testInitialize_revert_ifAlreadyInitialized() public {
         vm.expectRevert("Initializable: contract is already initialized");
-        hyp721.initialize(
-            INITIAL_SUPPLY,
-            NAME,
-            SYMBOL,
-            address(0),
-            address(0),
-            address(this)
-        );
+        hyp721.initialize(INITIAL_SUPPLY, NAME, SYMBOL);
     }
 
     function testTotalSupply() public {
@@ -271,14 +228,7 @@ contract HypERC721URIStorageTest is HypTokenTest {
         localToken = new MockHypERC721URIStorage(address(localMailbox));
         hyp721Storage = MockHypERC721URIStorage(address(localToken));
 
-        hyp721Storage.initialize(
-            INITIAL_SUPPLY,
-            NAME,
-            SYMBOL,
-            address(0),
-            address(0),
-            address(this)
-        );
+        hyp721Storage.initialize(INITIAL_SUPPLY, NAME, SYMBOL);
         hyp721Storage.setTokenURI(0, URI);
         hyp721Storage.enrollRemoteRouter(
             DESTINATION,
@@ -304,21 +254,10 @@ contract HypERC721CollateralTest is HypTokenTest {
     function setUp() public override {
         super.setUp();
 
-        HypERC721Collateral implementation = new HypERC721Collateral(
+        localToken = new HypERC721Collateral(
             address(localPrimaryToken),
             address(localMailbox)
         );
-        TransparentUpgradeableProxy proxy = new TransparentUpgradeableProxy(
-            address(implementation),
-            PROXY_ADMIN,
-            abi.encodeWithSelector(
-                HypERC721Collateral.initialize.selector,
-                address(0),
-                address(0),
-                address(this)
-            )
-        );
-        localToken = HypERC721Collateral(address(proxy));
         hyp721Collateral = HypERC721Collateral(address(localToken));
 
         hyp721Collateral.enrollRemoteRouter(

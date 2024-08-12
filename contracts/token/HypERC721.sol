@@ -19,22 +19,18 @@ contract HypERC721 is ERC721EnumerableUpgradeable, TokenRouter {
      * @param _mintAmount The amount of NFTs to mint to `msg.sender`.
      * @param _name The name of the token.
      * @param _symbol The symbol of the token.
-     * @param _hook The post-dispatch hook contract.
-       @param _interchainSecurityModule The interchain security module contract.
-       @param _owner The this contract.
      */
     function initialize(
         uint256 _mintAmount,
         string memory _name,
-        string memory _symbol,
-        address _hook,
-        address _interchainSecurityModule,
-        address _owner
+        string memory _symbol
     ) external initializer {
-        _MailboxClient_initialize(_hook, _interchainSecurityModule, _owner);
+        address owner = msg.sender;
+        _transferOwnership(owner);
+
         __ERC721_init(_name, _symbol);
         for (uint256 i = 0; i < _mintAmount; i++) {
-            _safeMint(msg.sender, i);
+            _safeMint(owner, i);
         }
     }
 

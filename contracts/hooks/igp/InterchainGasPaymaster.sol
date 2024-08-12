@@ -228,14 +228,14 @@ contract InterchainGasPaymaster is
         IGasOracle _gasOracle = destinationGasConfigs[_destinationDomain]
             .gasOracle;
 
-        if (address(_gasOracle) == address(0)) {
-            revert(
-                string.concat(
-                    "Configured IGP doesn't support domain ",
-                    Strings.toString(_destinationDomain)
-                )
-            );
-        }
+        require(
+            address(_gasOracle) != address(0),
+            string.concat(
+                "Configured IGP doesn't support domain ",
+                Strings.toString(_destinationDomain)
+            )
+        );
+
         return _gasOracle.getExchangeRateAndGasPrice(_destinationDomain);
     }
 

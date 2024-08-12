@@ -153,10 +153,8 @@ abstract contract Router is MailboxClient, IMessageRecipient {
         uint32 _domain
     ) internal view returns (bytes32) {
         (bool contained, bytes32 _router) = _routers.tryGet(_domain);
-        if (contained) {
-            return _router;
-        }
-        revert(_domainNotFoundError(_domain));
+        require(contained, _domainNotFoundError(_domain));
+        return _router;
     }
 
     function _domainNotFoundError(
@@ -169,73 +167,28 @@ abstract contract Router is MailboxClient, IMessageRecipient {
             );
     }
 
-    function _Router_dispatch(
-        uint32 _destinationDomain,
-        uint256 _value,
-        bytes memory _messageBody,
-        bytes memory _hookMetadata,
-        address _hook
-    ) internal returns (bytes32) {
-        bytes32 _router = _mustHaveRemoteRouter(_destinationDomain);
-        return
-            mailbox.dispatch{value: _value}(
-                _destinationDomain,
-                _router,
-                _messageBody,
-                _hookMetadata,
-                IPostDispatchHook(_hook)
-            );
-    }
-
-    /**
-     * DEPRECATED: Use `_Router_dispatch` instead
-     * @dev For backward compatibility with v2 client contracts
-     */
     function _dispatch(
         uint32 _destinationDomain,
         bytes memory _messageBody
-    ) internal returns (bytes32) {
-        return
-            _Router_dispatch(
-                _destinationDomain,
-                msg.value,
-                _messageBody,
-                "",
-                address(hook)
-            );
+    ) internal virtual returns (bytes32) {
+        return _dispatch(_destinationDomain, msg.value, _messageBody);
     }
 
-    function _Router_quoteDispatch(
+    function _dispatch(
         uint32 _destinationDomain,
-        bytes memory _messageBody,
-        bytes memory _hookMetadata,
-        address _hook
-    ) internal view returns (uint256) {
+        uint256 _value,
+        bytes memory _messageBody
+    ) internal virtual returns (bytes32) {
         bytes32 _router = _mustHaveRemoteRouter(_destinationDomain);
         return
-            mailbox.quoteDispatch(
-                _destinationDomain,
-                _router,
-                _messageBody,
-                _hookMetadata,
-                IPostDispatchHook(_hook)
-            );
+            super._dispatch(_destinationDomain, _router, _value, _messageBody);
     }
 
-    /**
-     * DEPRECATED: Use `_Router_quoteDispatch` instead
-     * @dev For backward compatibility with v2 client contracts
-     */
     function _quoteDispatch(
         uint32 _destinationDomain,
         bytes memory _messageBody
-    ) internal view returns (uint256) {
-        return
-            _Router_quoteDispatch(
-                _destinationDomain,
-                _messageBody,
-                "",
-                address(hook)
-            );
+    ) internal view virtual returns (uint256) {
+        bytes32 _router = _mustHaveRemoteRouter(_destinationDomain);
+        return super._quoteDispatch(_destinationDomain, _router, _messageBody);
     }
 }
