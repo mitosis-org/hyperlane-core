@@ -78,10 +78,5 @@
     "gas-ci": "yarn gas --check --tolerance 2 || (echo 'Manually update gas snapshot' && exit 1)",
     "slither": "slither .",
     "storage": "./storage.sh"
-  },
-  "peerDependencies": {
-    "@ethersproject/abi": "^5.7.0",
-    "@ethersproject/providers": "^5.7.2",
-    "@types/sinon-chai": "^3.2.12"
   }
 }
