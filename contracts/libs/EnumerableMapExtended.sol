@@ -2,8 +2,8 @@
 pragma solidity >=0.6.11;
 
 // ============ External Imports ============
-import "@oz-hpl/contracts/utils/structs/EnumerableMap.sol";
-import "@oz-hpl/contracts/utils/structs/EnumerableSet.sol";
+import "@oz-v4/utils/structs/EnumerableMap.sol";
+import "@oz-v4/utils/structs/EnumerableSet.sol";
 
 // extends EnumerableMap with uint256 => bytes32 type
 // modelled after https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.8.0/contracts/utils/structs/EnumerableMap.sol

@@ -2,8 +2,8 @@
 pragma solidity >=0.6.11;
 
 // ============ External Imports ============
-import "@oz-hpl/contracts/utils/structs/EnumerableMap.sol";
-import "@oz-hpl/contracts/utils/structs/EnumerableSet.sol";
+import "@oz-v4/utils/structs/EnumerableMap.sol";
+import "@oz-v4/utils/structs/EnumerableSet.sol";
 // ============ Internal Imports ============
 import {TypeCasts} from "./TypeCasts.sol";
 

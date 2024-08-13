@@ -2,8 +2,8 @@
 pragma solidity >=0.8.0;
 
 import {IPaymentCoordinator} from "../../interfaces/avs/vendored/IPaymentCoordinator.sol";
-import {IERC20} from "@oz-hpl/contracts/token/ERC20/IERC20.sol";
-import {SafeERC20} from "@oz-hpl/contracts/token/ERC20/utils/SafeERC20.sol";
+import {IERC20} from "@oz-v4/token/ERC20/IERC20.sol";
+import {SafeERC20} from "@oz-v4/token/ERC20/utils/SafeERC20.sol";
 
 contract TestPaymentCoordinator is IPaymentCoordinator {
     using SafeERC20 for IERC20;

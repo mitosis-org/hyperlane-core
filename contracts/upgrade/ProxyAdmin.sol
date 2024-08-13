@@ -3,4 +3,4 @@
 
 pragma solidity ^0.8.0;
 
-import "@oz-hpl/contracts/proxy/transparent/ProxyAdmin.sol";
+import "@oz-v4/proxy/transparent/ProxyAdmin.sol";

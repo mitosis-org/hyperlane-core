@@ -8,8 +8,8 @@ import {IInterchainSecurityModule} from "../interfaces/IInterchainSecurityModule
 import {Message} from "../libs/Message.sol";
 
 // ============ External Imports ============
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
-import {OwnableUpgradeable} from "@oz-hpl/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
+import {OwnableUpgradeable} from "@ozu-v4/access/OwnableUpgradeable.sol";
 
 abstract contract MailboxClient is OwnableUpgradeable {
     using Message for bytes;

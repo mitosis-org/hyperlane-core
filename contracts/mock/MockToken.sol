@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.13;
 
-import {ERC20Upgradeable} from "@oz-hpl/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
+import {ERC20Upgradeable} from "@ozu-v4/token/ERC20/ERC20Upgradeable.sol";
 
 contract MockToken is ERC20Upgradeable {
     function mint(address account, uint256 amount) external {

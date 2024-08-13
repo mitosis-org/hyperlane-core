@@ -5,7 +5,7 @@ import {InterchainQueryRouter} from "../middleware/InterchainQueryRouter.sol";
 import {TypeCasts} from "../libs/TypeCasts.sol";
 import {CallLib} from "../middleware/libs/Call.sol";
 
-import {Ownable} from "@oz-hpl/contracts/access/Ownable.sol";
+import {Ownable} from "@oz-v4/access/Ownable.sol";
 
 contract TestQuery {
     InterchainQueryRouter public router;

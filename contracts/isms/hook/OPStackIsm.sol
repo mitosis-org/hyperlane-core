@@ -21,8 +21,8 @@ import {TypeCasts} from "../../libs/TypeCasts.sol";
 import {AbstractMessageIdAuthorizedIsm} from "./AbstractMessageIdAuthorizedIsm.sol";
 
 // ============ External Imports ============
-import {CrossChainEnabledOptimism} from "@oz-hpl/contracts/crosschain/optimism/CrossChainEnabledOptimism.sol";
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
+import {CrossChainEnabledOptimism} from "@oz-v4/crosschain/optimism/CrossChainEnabledOptimism.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
 
 /**
  * @title OPStackIsm

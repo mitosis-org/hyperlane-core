@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT OR Apache-2.0
 pragma solidity >=0.8.0;
 
-import {Ownable} from "@oz-hpl/contracts/access/Ownable.sol";
+import {Ownable} from "@oz-v4/access/Ownable.sol";
 
 import {IMessageRecipient} from "../interfaces/IMessageRecipient.sol";
 import {IInterchainSecurityModule, ISpecifiesInterchainSecurityModule} from "../interfaces/IInterchainSecurityModule.sol";

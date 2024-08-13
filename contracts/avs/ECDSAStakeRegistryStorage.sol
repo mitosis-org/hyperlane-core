@@ -2,7 +2,7 @@
 pragma solidity ^0.8.12;
 
 import {IDelegationManager} from "../interfaces/avs/vendored/IDelegationManager.sol";
-import {CheckpointsUpgradeable} from "@oz-hpl/contracts-upgradeable/utils/CheckpointsUpgradeable.sol";
+import {CheckpointsUpgradeable} from "@ozu-v4/utils/CheckpointsUpgradeable.sol";
 import {IECDSAStakeRegistryEventsAndErrors, Quorum, StrategyParams} from "../interfaces/avs/vendored/IECDSAStakeRegistryEventsAndErrors.sol";
 
 /// @author Layr Labs, Inc.

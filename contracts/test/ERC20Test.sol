@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity >=0.8.0;
 
-import "@oz-hpl/contracts/token/ERC20/ERC20.sol";
+import "@oz-v4/token/ERC20/ERC20.sol";
 
 import "../token/interfaces/IXERC20Lockbox.sol";
 import "../token/interfaces/IXERC20.sol";

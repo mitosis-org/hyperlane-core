@@ -22,7 +22,7 @@ import {IPostDispatchHook} from "../interfaces/hooks/IPostDispatchHook.sol";
 
 // ============ External Imports ============
 import {FxBaseRootTunnel} from "fx-portal/contracts/tunnel/FxBaseRootTunnel.sol";
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
 
 /**
  * @title PolygonPosHook

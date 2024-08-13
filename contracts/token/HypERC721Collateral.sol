@@ -4,7 +4,7 @@ pragma solidity >=0.8.0;
 import {TokenRouter} from "./libs/TokenRouter.sol";
 import {TokenMessage} from "./libs/TokenMessage.sol";
 
-import {IERC721} from "@oz-hpl/contracts/token/ERC721/IERC721.sol";
+import {IERC721} from "@oz-v4/token/ERC721/IERC721.sol";
 
 /**
  * @title Hyperlane ERC721 Token Collateral that wraps an existing ERC721 with remote transfer functionality.

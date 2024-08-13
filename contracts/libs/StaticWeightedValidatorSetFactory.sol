@@ -2,8 +2,8 @@
 pragma solidity >=0.8.0;
 // ============ External Imports ============
 
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
-import {Create2} from "@oz-hpl/contracts/utils/Create2.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
+import {Create2} from "@oz-v4/utils/Create2.sol";
 import {IStaticWeightedMultisigIsm} from "../interfaces/isms/IWeightedMultisigIsm.sol";
 
 // ============ Internal Imports ============

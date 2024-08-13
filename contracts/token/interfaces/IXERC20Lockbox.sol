@@ -4,7 +4,7 @@ pragma solidity >=0.8.4 <0.9.0;
 // adapted from https://github.com/defi-wonderland/xERC20
 
 import {IXERC20} from "./IXERC20.sol";
-import {IERC20} from "@oz-hpl/contracts/token/ERC20/IERC20.sol";
+import {IERC20} from "@oz-v4/token/ERC20/IERC20.sol";
 
 interface IXERC20Lockbox {
     /**

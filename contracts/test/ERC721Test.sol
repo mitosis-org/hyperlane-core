@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity >=0.8.0;
 
-import "@oz-hpl/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@oz-v4/token/ERC721/extensions/ERC721Enumerable.sol";
 
 contract ERC721Test is ERC721Enumerable {
     constructor(

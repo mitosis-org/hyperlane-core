@@ -3,10 +3,10 @@ pragma solidity >=0.8.0;
 
 import {HypERC721} from "../HypERC721.sol";
 
-import {ERC721URIStorageUpgradeable} from "@oz-hpl/contracts-upgradeable/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol";
-import {ERC721EnumerableUpgradeable} from "@oz-hpl/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
-import {ERC721Upgradeable} from "@oz-hpl/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
-import {IERC721Upgradeable} from "@oz-hpl/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol";
+import {ERC721URIStorageUpgradeable} from "@ozu-v4/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol";
+import {ERC721EnumerableUpgradeable} from "@ozu-v4/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
+import {ERC721Upgradeable} from "@ozu-v4/token/ERC721/ERC721Upgradeable.sol";
+import {IERC721Upgradeable} from "@ozu-v4/token/ERC721/IERC721Upgradeable.sol";
 
 /**
  * @title Hyperlane ERC721 Token that extends ERC721URIStorage with remote transfer and URI relay functionality.

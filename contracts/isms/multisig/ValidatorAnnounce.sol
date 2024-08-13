@@ -8,8 +8,8 @@ import {TypeCasts} from "../../libs/TypeCasts.sol";
 import {MailboxClient} from "../../client/MailboxClient.sol";
 
 // ============ External Imports ============
-import {EnumerableSet} from "@oz-hpl/contracts/utils/structs/EnumerableSet.sol";
-import {ECDSA} from "@oz-hpl/contracts/utils/cryptography/ECDSA.sol";
+import {EnumerableSet} from "@oz-v4/utils/structs/EnumerableSet.sol";
+import {ECDSA} from "@oz-v4/utils/cryptography/ECDSA.sol";
 
 /**
  * @title ValidatorAnnounce

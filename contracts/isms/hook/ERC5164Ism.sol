@@ -22,7 +22,7 @@ import {AbstractMessageIdAuthorizedIsm} from "./AbstractMessageIdAuthorizedIsm.s
 
 // ============ External Imports ============
 
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
 
 /**
  * @title ERC5164Ism

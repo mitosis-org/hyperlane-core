@@ -21,9 +21,9 @@ import {Message} from "../../libs/Message.sol";
 
 // ============ External Imports ============
 
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
-import {Ownable} from "@oz-hpl/contracts/access/Ownable.sol";
-import {Initializable} from "@oz-hpl/contracts-upgradeable/proxy/utils/Initializable.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
+import {Ownable} from "@oz-v4/access/Ownable.sol";
+import {Initializable} from "@ozu-v4/proxy/utils/Initializable.sol";
 
 /**
  * @title AbstractMessageIdAuthorizedIsm

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.13;
 
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
 
 import {TypeCasts} from "../../libs/TypeCasts.sol";
 

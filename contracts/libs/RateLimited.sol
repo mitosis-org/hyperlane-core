@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT OR Apache-2.0
 pragma solidity >=0.8.0;
-import {OwnableUpgradeable} from "@oz-hpl/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {OwnableUpgradeable} from "@ozu-v4/access/OwnableUpgradeable.sol";
 
 /**
  * @title RateLimited

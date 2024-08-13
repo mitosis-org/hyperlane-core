@@ -3,4 +3,4 @@
 
 pragma solidity ^0.8.0;
 
-import "@oz-hpl/contracts/governance/TimelockController.sol";
+import "@oz-v4/governance/TimelockController.sol";

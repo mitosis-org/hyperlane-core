@@ -14,7 +14,7 @@ pragma solidity >=0.8.0;
 @@@@@@@@@       @@@@@@@@*/
 
 // ============ External Imports ============
-import {ECDSA} from "@oz-hpl/contracts/utils/cryptography/ECDSA.sol";
+import {ECDSA} from "@oz-v4/utils/cryptography/ECDSA.sol";
 
 // ============ Internal Imports ============
 import {IInterchainSecurityModule} from "../../interfaces/IInterchainSecurityModule.sol";

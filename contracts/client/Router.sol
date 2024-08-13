@@ -9,7 +9,7 @@ import {MailboxClient} from "./MailboxClient.sol";
 import {EnumerableMapExtended} from "../libs/EnumerableMapExtended.sol";
 
 // ============ External Imports ============
-import {Strings} from "@oz-hpl/contracts/utils/Strings.sol";
+import {Strings} from "@oz-v4/utils/Strings.sol";
 
 abstract contract Router is MailboxClient, IMessageRecipient {
     using EnumerableMapExtended for EnumerableMapExtended.UintToBytes32Map;

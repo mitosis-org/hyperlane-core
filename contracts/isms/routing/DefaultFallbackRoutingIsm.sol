@@ -9,7 +9,7 @@ import {TypeCasts} from "../../libs/TypeCasts.sol";
 import {MailboxClient} from "../../client/MailboxClient.sol";
 
 // ============ External Imports ============
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
 
 contract DefaultFallbackRoutingIsm is DomainRoutingIsm, MailboxClient {
     using EnumerableMapExtended for EnumerableMapExtended.UintToBytes32Map;

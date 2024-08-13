@@ -7,8 +7,8 @@ import {ITokenMessenger} from "../interfaces/circle/ITokenMessenger.sol";
 import {ICircleMessageTransmitter} from "../interfaces/circle/ICircleMessageTransmitter.sol";
 import {ILiquidityLayerAdapter} from "../interfaces/ILiquidityLayerAdapter.sol";
 
-import {IERC20} from "@oz-hpl/contracts/token/ERC20/IERC20.sol";
-import {SafeERC20} from "@oz-hpl/contracts/token/ERC20/utils/SafeERC20.sol";
+import {IERC20} from "@oz-v4/token/ERC20/IERC20.sol";
+import {SafeERC20} from "@oz-v4/token/ERC20/utils/SafeERC20.sol";
 
 contract CircleBridgeAdapter is ILiquidityLayerAdapter, Router {
     using SafeERC20 for IERC20;

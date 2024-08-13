@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-import {Ownable} from "@oz-hpl/contracts/access/Ownable.sol";
+import {Ownable} from "@oz-v4/access/Ownable.sol";
 
 contract LayerZeroTreasuryMock is Ownable {
     function withdraw() external onlyOwner {

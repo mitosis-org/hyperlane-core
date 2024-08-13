@@ -21,8 +21,8 @@ import {TypeCasts} from "../../libs/TypeCasts.sol";
 import {AbstractMessageIdAuthorizedIsm} from "./AbstractMessageIdAuthorizedIsm.sol";
 
 // ============ External Imports ============
-import {CrossChainEnabledPolygonChild} from "@oz-hpl/contracts/crosschain/polygon/CrossChainEnabledPolygonChild.sol";
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
+import {CrossChainEnabledPolygonChild} from "@oz-v4/crosschain/polygon/CrossChainEnabledPolygonChild.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
 
 /**
  * @title PolygonPosIsm

@@ -2,8 +2,8 @@
 pragma solidity >=0.8.0;
 
 // ============ External Imports ============
-import {Pausable} from "@oz-hpl/contracts/security/Pausable.sol";
-import {Ownable} from "@oz-hpl/contracts/access/Ownable.sol";
+import {Pausable} from "@oz-v4/security/Pausable.sol";
+import {Ownable} from "@oz-v4/access/Ownable.sol";
 
 // ============ Internal Imports ============
 import {IInterchainSecurityModule} from "../interfaces/IInterchainSecurityModule.sol";

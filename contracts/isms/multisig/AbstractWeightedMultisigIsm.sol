@@ -14,9 +14,9 @@ pragma solidity >=0.8.0;
 @@@@@@@@@       @@@@@@@@*/
 
 // ============ External Imports ============
-import {ECDSA} from "@oz-hpl/contracts/utils/cryptography/ECDSA.sol";
-import {OwnableUpgradeable} from "@oz-hpl/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import {Math} from "@oz-hpl/contracts/utils/math/Math.sol";
+import {ECDSA} from "@oz-v4/utils/cryptography/ECDSA.sol";
+import {OwnableUpgradeable} from "@ozu-v4/access/OwnableUpgradeable.sol";
+import {Math} from "@oz-v4/utils/math/Math.sol";
 // ============ Internal Imports ============
 import {IInterchainSecurityModule} from "../../interfaces/IInterchainSecurityModule.sol";
 import {IStaticWeightedMultisigIsm} from "../../interfaces/isms/IWeightedMultisigIsm.sol";

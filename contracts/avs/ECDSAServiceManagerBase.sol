@@ -12,7 +12,7 @@ import {IPaymentCoordinator} from "../interfaces/avs/vendored/IPaymentCoordinato
 import {Quorum} from "../interfaces/avs/vendored/IECDSAStakeRegistryEventsAndErrors.sol";
 import {ECDSAStakeRegistry} from "./ECDSAStakeRegistry.sol";
 
-import {OwnableUpgradeable} from "@oz-hpl/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {OwnableUpgradeable} from "@ozu-v4/access/OwnableUpgradeable.sol";
 
 /// @author Layr Labs, Inc.
 abstract contract ECDSAServiceManagerBase is

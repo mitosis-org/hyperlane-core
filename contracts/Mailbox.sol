@@ -12,8 +12,8 @@ import {IMessageRecipient} from "./interfaces/IMessageRecipient.sol";
 import {IMailbox} from "./interfaces/IMailbox.sol";
 
 // ============ External Imports ============
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
-import {OwnableUpgradeable} from "@oz-hpl/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
+import {OwnableUpgradeable} from "@ozu-v4/access/OwnableUpgradeable.sol";
 
 contract Mailbox is IMailbox, Indexed, Versioned, OwnableUpgradeable {
     // ============ Libraries ============

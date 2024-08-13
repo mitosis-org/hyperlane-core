@@ -20,7 +20,7 @@ import {Message} from "../../libs/Message.sol";
 import {IPostDispatchHook} from "../../interfaces/hooks/IPostDispatchHook.sol";
 
 // ============ External Imports ============
-import {Strings} from "@oz-hpl/contracts/utils/Strings.sol";
+import {Strings} from "@oz-v4/utils/Strings.sol";
 
 /**
  * @title DomainRoutingHook

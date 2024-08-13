@@ -5,8 +5,8 @@ import {TokenRouter} from "./libs/TokenRouter.sol";
 import {TokenMessage} from "./libs/TokenMessage.sol";
 import {MailboxClient} from "../client/MailboxClient.sol";
 
-import {IERC20} from "@oz-hpl/contracts/token/ERC20/IERC20.sol";
-import {SafeERC20} from "@oz-hpl/contracts/token/ERC20/utils/SafeERC20.sol";
+import {IERC20} from "@oz-v4/token/ERC20/IERC20.sol";
+import {SafeERC20} from "@oz-v4/token/ERC20/utils/SafeERC20.sol";
 
 /**
  * @title Hyperlane ERC20 Token Collateral that wraps an existing ERC20 with remote transfer functionality.

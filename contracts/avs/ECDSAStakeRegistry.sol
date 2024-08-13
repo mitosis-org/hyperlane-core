@@ -7,10 +7,10 @@ import {IDelegationManager} from "../interfaces/avs/vendored/IDelegationManager.
 import {ISignatureUtils} from "../interfaces/avs/vendored/ISignatureUtils.sol";
 import {IServiceManager} from "../interfaces/avs/vendored/IServiceManager.sol";
 
-import {OwnableUpgradeable} from "@oz-hpl/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import {CheckpointsUpgradeable} from "@oz-hpl/contracts-upgradeable/utils/CheckpointsUpgradeable.sol";
-import {SignatureCheckerUpgradeable} from "@oz-hpl/contracts-upgradeable/utils/cryptography/SignatureCheckerUpgradeable.sol";
-import {IERC1271Upgradeable} from "@oz-hpl/contracts-upgradeable/interfaces/IERC1271Upgradeable.sol";
+import {OwnableUpgradeable} from "@ozu-v4/access/OwnableUpgradeable.sol";
+import {CheckpointsUpgradeable} from "@ozu-v4/utils/CheckpointsUpgradeable.sol";
+import {SignatureCheckerUpgradeable} from "@ozu-v4/utils/cryptography/SignatureCheckerUpgradeable.sol";
+import {IERC1271Upgradeable} from "@ozu-v4/interfaces/IERC1271Upgradeable.sol";
 
 /// @title ECDSA Stake Registry
 /// @author Layr Labs, Inc.

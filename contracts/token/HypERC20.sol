@@ -3,7 +3,7 @@ pragma solidity >=0.8.0;
 
 import {TokenRouter} from "./libs/TokenRouter.sol";
 
-import {ERC20Upgradeable} from "@oz-hpl/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
+import {ERC20Upgradeable} from "@ozu-v4/token/ERC20/ERC20Upgradeable.sol";
 
 /**
  * @title Hyperlane ERC20 Token Router that extends ERC20 with remote transfer functionality.

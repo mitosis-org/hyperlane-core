@@ -24,8 +24,8 @@ import {AbstractMessageIdAuthorizedIsm} from "./AbstractMessageIdAuthorizedIsm.s
 
 import {IBridge} from "@arbitrum/nitro-contracts/src/bridge/IBridge.sol";
 import {IOutbox} from "@arbitrum/nitro-contracts/src/bridge/IOutbox.sol";
-import {CrossChainEnabledArbitrumL1} from "@oz-hpl/contracts/crosschain/arbitrum/CrossChainEnabledArbitrumL1.sol";
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
+import {CrossChainEnabledArbitrumL1} from "@oz-v4/crosschain/arbitrum/CrossChainEnabledArbitrumL1.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
 
 /**
  * @title ArbL2ToL1Ism

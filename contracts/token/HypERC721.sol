@@ -3,9 +3,9 @@ pragma solidity >=0.8.0;
 
 import {TokenRouter} from "./libs/TokenRouter.sol";
 
-import {IERC721Upgradeable} from "@oz-hpl/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol";
-import {ERC721Upgradeable} from "@oz-hpl/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
-import {ERC721EnumerableUpgradeable} from "@oz-hpl/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
+import {IERC721Upgradeable} from "@ozu-v4/token/ERC721/IERC721Upgradeable.sol";
+import {ERC721Upgradeable} from "@ozu-v4/token/ERC721/ERC721Upgradeable.sol";
+import {ERC721EnumerableUpgradeable} from "@ozu-v4/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
 
 /**
  * @title Hyperlane ERC721 Token Router that extends ERC721 with remote transfer functionality.

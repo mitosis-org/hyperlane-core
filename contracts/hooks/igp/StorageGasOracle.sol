@@ -5,7 +5,7 @@ pragma solidity >=0.8.0;
 import {IGasOracle} from "../../interfaces/IGasOracle.sol";
 
 // ============ External Imports ============
-import {Ownable} from "@oz-hpl/contracts/access/Ownable.sol";
+import {Ownable} from "@oz-v4/access/Ownable.sol";
 
 /**
  * @notice A gas oracle that uses data stored within the contract.

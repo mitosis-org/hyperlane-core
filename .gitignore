@@ -16,3 +16,4 @@ flattened/
 buildArtifact.json
 fixtures/
 .yarn/install-state.gz
+dependencies/

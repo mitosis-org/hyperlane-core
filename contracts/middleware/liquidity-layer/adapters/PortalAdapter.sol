@@ -7,7 +7,7 @@ import {IPortalTokenBridge} from "../interfaces/portal/IPortalTokenBridge.sol";
 import {ILiquidityLayerAdapter} from "../interfaces/ILiquidityLayerAdapter.sol";
 import {TypeCasts} from "../../../libs/TypeCasts.sol";
 
-import {IERC20} from "@oz-hpl/contracts/token/ERC20/IERC20.sol";
+import {IERC20} from "@oz-v4/token/ERC20/IERC20.sol";
 
 contract PortalAdapter is ILiquidityLayerAdapter, Router {
     /// @notice The Portal TokenBridge contract.

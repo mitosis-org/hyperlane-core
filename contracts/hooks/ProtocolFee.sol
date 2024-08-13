@@ -20,8 +20,8 @@ import {AbstractPostDispatchHook} from "./libs/AbstractPostDispatchHook.sol";
 import {IPostDispatchHook} from "../interfaces/hooks/IPostDispatchHook.sol";
 
 // ============ External Imports ============
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
-import {Ownable} from "@oz-hpl/contracts/access/Ownable.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
+import {Ownable} from "@oz-v4/access/Ownable.sol";
 
 /**
  * @title ProtocolFee

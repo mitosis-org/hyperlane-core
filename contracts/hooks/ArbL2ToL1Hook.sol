@@ -24,7 +24,7 @@ import {IPostDispatchHook} from "../interfaces/hooks/IPostDispatchHook.sol";
 import {MailboxClient} from "../client/MailboxClient.sol";
 
 // ============ External Imports ============
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
 import {ArbSys} from "@arbitrum/nitro-contracts/src/precompiles/ArbSys.sol";
 
 /**

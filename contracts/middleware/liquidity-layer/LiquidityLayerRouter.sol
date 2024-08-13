@@ -10,8 +10,8 @@ import {ILiquidityLayerMessageRecipient} from "../../interfaces/ILiquidityLayerM
 
 import {TypeCasts} from "../../libs/TypeCasts.sol";
 
-import {IERC20} from "@oz-hpl/contracts/token/ERC20/IERC20.sol";
-import {SafeERC20} from "@oz-hpl/contracts/token/ERC20/utils/SafeERC20.sol";
+import {IERC20} from "@oz-v4/token/ERC20/IERC20.sol";
+import {SafeERC20} from "@oz-v4/token/ERC20/utils/SafeERC20.sol";
 
 contract LiquidityLayerRouter is Router, ILiquidityLayerRouter {
     using SafeERC20 for IERC20;

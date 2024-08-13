@@ -16,8 +16,8 @@ pragma solidity >=0.8.0;
 import {IPostDispatchHook} from "../interfaces/hooks/IPostDispatchHook.sol";
 import {AbstractPostDispatchHook} from "./libs/AbstractPostDispatchHook.sol";
 
-import {Ownable} from "@oz-hpl/contracts/access/Ownable.sol";
-import {Pausable} from "@oz-hpl/contracts/security/Pausable.sol";
+import {Ownable} from "@oz-v4/access/Ownable.sol";
+import {Pausable} from "@oz-v4/security/Pausable.sol";
 
 contract PausableHook is AbstractPostDispatchHook, Ownable, Pausable {
     // ============ External functions ============

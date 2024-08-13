@@ -8,9 +8,9 @@ import {InterchainQueryMessage} from "./libs/InterchainQueryMessage.sol";
 import {TypeCasts} from "../libs/TypeCasts.sol";
 
 // ============ External Imports ============
-import {Create2} from "@oz-hpl/contracts/utils/Create2.sol";
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
-import {Initializable} from "@oz-hpl/contracts-upgradeable/proxy/utils/Initializable.sol";
+import {Create2} from "@oz-v4/utils/Create2.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
+import {Initializable} from "@ozu-v4/proxy/utils/Initializable.sol";
 
 /**
  * @title Interchain Query Router that performs remote view calls on other chains and returns the result.

@@ -26,3 +26,7 @@ polygon = "https://rpc.ankr.com/polygon"
 [fuzz]
 runs = 50
 dictionary_weight = 80
+
+[dependencies]
+"@openzeppelin-contracts" = "4.9.3"
+"@openzeppelin-contracts-upgradeable" = "4.9.3"

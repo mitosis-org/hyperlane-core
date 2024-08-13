@@ -23,9 +23,9 @@ import {AbstractPostDispatchHook} from "../libs/AbstractPostDispatchHook.sol";
 import {Indexed} from "../../libs/Indexed.sol";
 
 // ============ External Imports ============
-import {Strings} from "@oz-hpl/contracts/utils/Strings.sol";
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
-import {OwnableUpgradeable} from "@oz-hpl/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {Strings} from "@oz-v4/utils/Strings.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
+import {OwnableUpgradeable} from "@ozu-v4/access/OwnableUpgradeable.sol";
 
 /**
  * @title InterchainGasPaymaster

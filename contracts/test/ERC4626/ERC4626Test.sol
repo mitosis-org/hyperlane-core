@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity >=0.8.0;
-import "@oz-hpl/contracts/token/ERC20/extensions/ERC4626.sol";
-import "@oz-hpl/contracts/token/ERC20/ERC20.sol";
-import "@oz-hpl/contracts/interfaces/IERC20.sol";
+import "@oz-v4/token/ERC20/extensions/ERC4626.sol";
+import "@oz-v4/token/ERC20/ERC20.sol";
+import "@oz-v4/interfaces/IERC20.sol";
 
 contract ERC4626Test is ERC4626 {
     constructor(

@@ -20,7 +20,7 @@ import {IMessageDispatcher} from "../../interfaces/hooks/IMessageDispatcher.sol"
 import {AbstractMessageIdAuthHook} from "../libs/AbstractMessageIdAuthHook.sol";
 
 // ============ External Imports ============
-import {Address} from "@oz-hpl/contracts/utils/Address.sol";
+import {Address} from "@oz-v4/utils/Address.sol";
 
 /**
  * @title 5164MessageHook

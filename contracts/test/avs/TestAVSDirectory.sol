@@ -5,7 +5,7 @@ import {IAVSDirectory} from "../../interfaces/avs/vendored/IAVSDirectory.sol";
 import {ISignatureUtils} from "../../interfaces/avs/vendored/ISignatureUtils.sol";
 import {ISlasher} from "../../interfaces/avs/vendored/ISlasher.sol";
 
-import {ECDSA} from "@oz-hpl/contracts/utils/cryptography/ECDSA.sol";
+import {ECDSA} from "@oz-v4/utils/cryptography/ECDSA.sol";
 
 contract TestAVSDirectory is IAVSDirectory {
     bytes32 public constant OPERATOR_AVS_REGISTRATION_TYPEHASH =
