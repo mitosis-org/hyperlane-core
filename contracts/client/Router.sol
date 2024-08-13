@@ -9,7 +9,7 @@ import {MailboxClient} from "./MailboxClient.sol";
 import {EnumerableMapExtended} from "../libs/EnumerableMapExtended.sol";
 
 // ============ External Imports ============
-import {Strings} from "@oz-v4/utils/Strings.sol";
+import {Strings} from "@oz-v5/utils/Strings.sol";
 
 abstract contract Router is MailboxClient, IMessageRecipient {
     using EnumerableMapExtended for EnumerableMapExtended.UintToBytes32Map;
@@ -51,10 +51,7 @@ abstract contract Router is MailboxClient, IMessageRecipient {
      * @param _domain The domain of the remote Application Router
      * @param _router The address of the remote Application Router
      */
-    function enrollRemoteRouter(
-        uint32 _domain,
-        bytes32 _router
-    ) external virtual onlyOwner {
+    function enrollRemoteRouter(uint32 _domain, bytes32 _router) external virtual onlyOwner {
         _enrollRemoteRouter(_domain, _router);
     }
 
@@ -63,10 +60,11 @@ abstract contract Router is MailboxClient, IMessageRecipient {
      * @param _domains The domains of the remote Application Routers
      * @param _addresses The addresses of the remote Application Routers
      */
-    function enrollRemoteRouters(
-        uint32[] calldata _domains,
-        bytes32[] calldata _addresses
-    ) external virtual onlyOwner {
+    function enrollRemoteRouters(uint32[] calldata _domains, bytes32[] calldata _addresses)
+        external
+        virtual
+        onlyOwner
+    {
         require(_domains.length == _addresses.length, "!length");
         uint256 length = _domains.length;
         for (uint256 i = 0; i < length; i += 1) {
@@ -78,9 +76,7 @@ abstract contract Router is MailboxClient, IMessageRecipient {
      * @notice Batch version of `unenrollRemoteRouter`
      * @param _domains The domains of the remote Application Routers
      */
-    function unenrollRemoteRouters(
-        uint32[] calldata _domains
-    ) external virtual onlyOwner {
+    function unenrollRemoteRouters(uint32[] calldata _domains) external virtual onlyOwner {
         uint256 length = _domains.length;
         for (uint256 i = 0; i < length; i += 1) {
             _unenrollRemoteRouter(_domains[i]);
@@ -93,22 +89,20 @@ abstract contract Router is MailboxClient, IMessageRecipient {
      * @param _sender The sender address
      * @param _message The message
      */
-    function handle(
-        uint32 _origin,
-        bytes32 _sender,
-        bytes calldata _message
-    ) external payable virtual override onlyMailbox {
+    function handle(uint32 _origin, bytes32 _sender, bytes calldata _message)
+        external
+        payable
+        virtual
+        override
+        onlyMailbox
+    {
         bytes32 _router = _mustHaveRemoteRouter(_origin);
         require(_router == _sender, "Enrolled router does not match sender");
         _handle(_origin, _sender, _message);
     }
 
     // ============ Virtual functions ============
-    function _handle(
-        uint32 _origin,
-        bytes32 _sender,
-        bytes calldata _message
-    ) internal virtual;
+    function _handle(uint32 _origin, bytes32 _sender, bytes calldata _message) internal virtual;
 
     // ============ Internal functions ============
 
@@ -117,10 +111,7 @@ abstract contract Router is MailboxClient, IMessageRecipient {
      * @param _domain The domain
      * @param _address The new router
      */
-    function _enrollRemoteRouter(
-        uint32 _domain,
-        bytes32 _address
-    ) internal virtual {
+    function _enrollRemoteRouter(uint32 _domain, bytes32 _address) internal virtual {
         _routers.set(_domain, _address);
     }
 
@@ -137,10 +128,7 @@ abstract contract Router is MailboxClient, IMessageRecipient {
      * @param _domain The domain of the potential remote Application Router
      * @param _address The address of the potential remote Application Router
      */
-    function _isRemoteRouter(
-        uint32 _domain,
-        bytes32 _address
-    ) internal view returns (bool) {
+    function _isRemoteRouter(uint32 _domain, bytes32 _address) internal view returns (bool) {
         return routers(_domain) == _address;
     }
 
@@ -149,9 +137,7 @@ abstract contract Router is MailboxClient, IMessageRecipient {
      * @param _domain The domain of the chain for which to get the Application Router
      * @return _router The address of the remote Application Router on _domain
      */
-    function _mustHaveRemoteRouter(
-        uint32 _domain
-    ) internal view returns (bytes32) {
+    function _mustHaveRemoteRouter(uint32 _domain) internal view returns (bytes32) {
         (bool contained, bytes32 _router) = _routers.tryGet(_domain);
         if (contained) {
             return _router;
@@ -159,14 +145,8 @@ abstract contract Router is MailboxClient, IMessageRecipient {
         revert(_domainNotFoundError(_domain));
     }
 
-    function _domainNotFoundError(
-        uint32 _domain
-    ) internal pure returns (string memory) {
-        return
-            string.concat(
-                "No router enrolled for domain: ",
-                _domain.toString()
-            );
+    function _domainNotFoundError(uint32 _domain) internal pure returns (string memory) {
+        return string.concat("No router enrolled for domain: ", _domain.toString());
     }
 
     function _Router_dispatch(
@@ -177,32 +157,17 @@ abstract contract Router is MailboxClient, IMessageRecipient {
         address _hook
     ) internal returns (bytes32) {
         bytes32 _router = _mustHaveRemoteRouter(_destinationDomain);
-        return
-            mailbox.dispatch{value: _value}(
-                _destinationDomain,
-                _router,
-                _messageBody,
-                _hookMetadata,
-                IPostDispatchHook(_hook)
-            );
+        return mailbox.dispatch{value: _value}(
+            _destinationDomain, _router, _messageBody, _hookMetadata, IPostDispatchHook(_hook)
+        );
     }
 
     /**
      * DEPRECATED: Use `_Router_dispatch` instead
      * @dev For backward compatibility with v2 client contracts
      */
-    function _dispatch(
-        uint32 _destinationDomain,
-        bytes memory _messageBody
-    ) internal returns (bytes32) {
-        return
-            _Router_dispatch(
-                _destinationDomain,
-                msg.value,
-                _messageBody,
-                "",
-                address(hook)
-            );
+    function _dispatch(uint32 _destinationDomain, bytes memory _messageBody) internal returns (bytes32) {
+        return _Router_dispatch(_destinationDomain, msg.value, _messageBody, "", address(hook));
     }
 
     function _Router_quoteDispatch(
@@ -212,30 +177,14 @@ abstract contract Router is MailboxClient, IMessageRecipient {
         address _hook
     ) internal view returns (uint256) {
         bytes32 _router = _mustHaveRemoteRouter(_destinationDomain);
-        return
-            mailbox.quoteDispatch(
-                _destinationDomain,
-                _router,
-                _messageBody,
-                _hookMetadata,
-                IPostDispatchHook(_hook)
-            );
+        return mailbox.quoteDispatch(_destinationDomain, _router, _messageBody, _hookMetadata, IPostDispatchHook(_hook));
     }
 
     /**
      * DEPRECATED: Use `_Router_quoteDispatch` instead
      * @dev For backward compatibility with v2 client contracts
      */
-    function _quoteDispatch(
-        uint32 _destinationDomain,
-        bytes memory _messageBody
-    ) internal view returns (uint256) {
-        return
-            _Router_quoteDispatch(
-                _destinationDomain,
-                _messageBody,
-                "",
-                address(hook)
-            );
+    function _quoteDispatch(uint32 _destinationDomain, bytes memory _messageBody) internal view returns (uint256) {
+        return _Router_quoteDispatch(_destinationDomain, _messageBody, "", address(hook));
     }
 }

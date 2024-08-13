@@ -8,8 +8,7 @@ import {IInterchainSecurityModule} from "../interfaces/IInterchainSecurityModule
 import {Message} from "../libs/Message.sol";
 
 // ============ External Imports ============
-import {Address} from "@oz-v4/utils/Address.sol";
-import {OwnableUpgradeable} from "@ozu-v4/access/OwnableUpgradeable.sol";
+import {OwnableUpgradeable} from "@ozu-v5/access/OwnableUpgradeable.sol";
 
 abstract contract MailboxClient is OwnableUpgradeable {
     using Message for bytes;
@@ -26,18 +25,12 @@ abstract contract MailboxClient is OwnableUpgradeable {
 
     // ============ Modifiers ============
     modifier onlyContract(address _contract) {
-        require(
-            Address.isContract(_contract),
-            "MailboxClient: invalid mailbox"
-        );
+        require(_contract.code.length > 0, "MailboxClient: invalid mailbox");
         _;
     }
 
     modifier onlyContractOrNull(address _contract) {
-        require(
-            Address.isContract(_contract) || _contract == address(0),
-            "MailboxClient: invalid contract setting"
-        );
+        require(_contract.code.length > 0 || _contract == address(0), "MailboxClient: invalid contract setting");
         _;
     }
 
@@ -45,10 +38,7 @@ abstract contract MailboxClient is OwnableUpgradeable {
      * @notice Only accept messages from an Hyperlane Mailbox contract
      */
     modifier onlyMailbox() {
-        require(
-            msg.sender == address(mailbox),
-            "MailboxClient: sender not mailbox"
-        );
+        require(msg.sender == address(mailbox), "MailboxClient: sender not mailbox");
         _;
     }
 
@@ -70,19 +60,16 @@ abstract contract MailboxClient is OwnableUpgradeable {
      * @notice Sets the address of the application's custom interchain security module.
      * @param _module The address of the interchain security module contract.
      */
-    function setInterchainSecurityModule(
-        address _module
-    ) public onlyContractOrNull(_module) onlyOwner {
+    function setInterchainSecurityModule(address _module) public onlyContractOrNull(_module) onlyOwner {
         interchainSecurityModule = IInterchainSecurityModule(_module);
     }
 
     // ======== Initializer =========
-    function _MailboxClient_initialize(
-        address _hook,
-        address _interchainSecurityModule,
-        address _owner
-    ) internal onlyInitializing {
-        __Ownable_init();
+    function _MailboxClient_initialize(address _hook, address _interchainSecurityModule, address _owner)
+        internal
+        onlyInitializing
+    {
+        __Ownable_init(_owner);
         setHook(_hook);
         setInterchainSecurityModule(_interchainSecurityModule);
         _transferOwnership(_owner);
