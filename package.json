@@ -22,7 +22,6 @@
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "repository": "https://github.com/hyperlane-xyz/hyperlane-monorepo",
-  "scripts": {},
   "types": "dist/index.d.ts",
   "packageManager": "yarn@4.4.0"
 }
