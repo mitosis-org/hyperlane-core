@@ -14,3 +14,4 @@ forge-cache
 docs
 flattened/
 .yarn/install-state.gz
+dependencies

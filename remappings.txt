@@ -1,2 +1,4 @@
-ds-test/=lib/forge-std/lib/ds-test/src/
-forge-std/=lib/forge-std/src/
+@oz-v4=dependencies/@openzeppelin-contracts-4.9.3
+@ozu-v4=dependencies/@openzeppelin-contracts-upgradeable-4.9.3
+@openzeppelin-contracts-upgradeable-4.9.3=dependencies/@openzeppelin-contracts-upgradeable-4.9.3
+@openzeppelin-contracts-4.9.3=dependencies/@openzeppelin-contracts-4.9.3
