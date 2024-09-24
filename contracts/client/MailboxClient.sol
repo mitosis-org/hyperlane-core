@@ -35,7 +35,7 @@ abstract contract MailboxClient is OwnableUpgradeable {
     }
 
     /**
-     * @notice Only accept messages from an Hyperlane Mailbox contract
+     * @notice Only accept messages from a Hyperlane Mailbox contract
      */
     modifier onlyMailbox() {
         require(msg.sender == address(mailbox), "MailboxClient: sender not mailbox");
