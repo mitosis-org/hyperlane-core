@@ -12,7 +12,7 @@ In short, it's Meta bridge. This bridge allows any state-syncs without mapping.
 
 #### Some use-cases of Fx-portal
 
-- [ERC20 token tranfer from Ethereum to Matic-Chain without mapping request](https://github.com/jdkanani/fx-portal/tree/main/contracts/examples/erc20-transfer)
+- [ERC20 token transfer from Ethereum to Matic-Chain without mapping request](https://github.com/jdkanani/fx-portal/tree/main/contracts/examples/erc20-transfer)
 - [Lazy minting of ERC20 tokens on MaticChain](https://github.com/jdkanani/fx-portal/tree/main/contracts/examples/mintable-erc20-transfer)
 - [State Transfer between Ethereum-Matic](https://github.com/jdkanani/fx-portal/tree/main/contracts/examples/state-transfer)
 
